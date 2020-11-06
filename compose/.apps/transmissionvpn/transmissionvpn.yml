@@ -17,10 +17,10 @@ services:
       - OPENVPN_USERNAME=${VPN_USER}
       - PGID=${PGID}
       - PUID=${PUID}
-      - TRANSMISSION_DOWNLOAD_DIR=/downloads/completed
+      - TRANSMISSION_DOWNLOAD_DIR=${TRANSMISSIONVPN_DOWNLOAD_DIR}
       - TRANSMISSION_HOME=/config
-      - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
-      - TRANSMISSION_WATCH_DIR=/downloads/watch
+      - TRANSMISSION_INCOMPLETE_DIR=${TRANSMISSIONVPN_INCOMPLETE_DIR}
+      - TRANSMISSION_WATCH_DIR=${TRANSMISSIONVPN_WATCH_DIR}
       - TZ=${TZ}
     logging:
       driver: json-file
@@ -32,6 +32,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${DOCKERCONFDIR}/transmissionvpn:/config
       - ${DOCKERSHAREDDIR}:/shared
+      - ${DOCKERSTORAGEDIR}:/storage
       - ${DOWNLOADSDIR}:/data
       - ${DOWNLOADSDIR}:/downloads
       - ${VPN_OVPNDIR}:/config/openvpn

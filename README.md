@@ -1,14 +1,13 @@
 # <!-- Home -->
 
-[![DockSTARTer](https://github.com/GhostWriters/DockSTARTer/raw/master/.github/logo.png)](https://dockstarter.com)
+[![DockSTARTer](https://github.com/GhostWriters/DockSTARTer/raw/master/docs/img/logo.png)](https://dockstarter.com)
 
 [![Supporters on Open Collective](https://img.shields.io/opencollective/all/DockSTARTer.svg?style=flat-square&color=607D8B)](#supporters)
-[![Discord chat](https://img.shields.io/discord/477959324183035936.svg?style=flat-square&color=607D8B&logo=discord)](https://discord.gg/YFyJpmH)
+[![Discord chat](https://img.shields.io/discord/477959324183035936.svg?style=flat-square&color=607D8B&logo=discord)](https://dockstarter.com/discord)
 [![GitHub contributors](https://img.shields.io/github/contributors/GhostWriters/DockSTARTer.svg?style=flat-square&color=607D8B)](https://github.com/GhostWriters/DockSTARTer/graphs/contributors)
 [![GitHub last commit master](https://img.shields.io/github/last-commit/GhostWriters/DockSTARTer/master.svg?style=flat-square&color=607D8B&label=code%20committed)](https://github.com/GhostWriters/DockSTARTer/commits/master)
-[![GitHub last commit docs](https://img.shields.io/github/last-commit/GhostWriters/DockSTARTer.com/master.svg?style=flat-square&color=607D8B&label=docs%20committed)](https://github.com/GhostWriters/DockSTARTer.com/commits/master)
 [![GitHub license](https://img.shields.io/github/license/GhostWriters/DockSTARTer.svg?style=flat-square&color=607D8B)](https://github.com/GhostWriters/DockSTARTer/blob/master/LICENSE.md)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/GhostWriters/DockSTARTer/CI/master?style=flat-square&color=607D8B&logo=github)](https://github.com/GhostWriters/DockSTARTer/actions?query=workflow%3ACI+branch%3Amaster)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/GhostWriters/DockSTARTer/Run%20Tests/master?style=flat-square&color=607D8B&logo=github)](https://github.com/GhostWriters/DockSTARTer/actions?query=workflow%3ARun%20Tests+branch%3Amaster)
 
 The main goal of DockSTARTer is to make it quick and easy to get up and running with Docker.
 
@@ -26,45 +25,57 @@ You may choose to rely on DockSTARTer for various changes to your Docker system,
 
 ### System Requirements
 
-- You must be running a [Supported platform](https://docs.docker.com/install/#supported-platforms) or an operating system based on a supported platform. Platforms named below will link to documentation listing compatible versions.
+- You must be running a [supported platform](https://docs.docker.com/install/#supported-platforms) or an operating system based on a supported platform. Platforms named below will link to documentation listing compatible versions.
 - You must be logged in as a non-root user with sudo permissions.
 
 ### One Time Setup (required)
 
 - APT Systems ([Debian](https://docs.docker.com/install/linux/docker-ce/debian/#os-requirements), [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/#os-requirements), etc)
 
-```bash
-sudo apt-get install curl git
-bash -c "$(curl -fsSL https://get.dockstarter.com)"
-sudo reboot
-```
+  ```bash
+  sudo apt-get install curl git
+  bash -c "$(curl -fsSL https://get.dockstarter.com)"
+  sudo reboot
+  ```
 
-> Raspbian requires a few extra commands
+  > Raspbian requires a few extra commands
 
-```bash
-sudo apt-get update
-sudo apt-get dist-upgrade
-sudo apt-get install curl git
-bash -c "$(curl -fsSL https://get.docker.com)"
-bash -c "$(curl -fsSL https://get.dockstarter.com)"
-sudo reboot
-```
+  ```bash
+  sudo apt-get update
+  sudo apt-get dist-upgrade
+  sudo apt-get install curl git
+  bash -c "$(curl -fsSL https://get.docker.com)"
+  bash -c "$(curl -fsSL https://get.dockstarter.com)"
+  sudo reboot
+  ```
+
+  > OpenMediaVault (OMV) requires [special instructions found here](https://dockstarter.com/advanced/openmediavault/)
 
 - DNF Systems ([Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/#os-requirements))
 
-```bash
-sudo dnf install curl git
-bash -c "$(curl -fsSL https://get.dockstarter.com)"
-sudo reboot
-```
+  ```bash
+  sudo dnf install curl git
+  bash -c "$(curl -fsSL https://get.dockstarter.com)"
+  sudo reboot
+  ```
 
 - YUM Systems ([CentOS](https://docs.docker.com/install/linux/docker-ce/centos/#os-requirements))
 
-```bash
-sudo yum install curl git
-bash -c "$(curl -fsSL https://get.dockstarter.com)"
-sudo reboot
-```
+  ```bash
+  sudo yum install curl git
+  bash -c "$(curl -fsSL https://get.dockstarter.com)"
+  sudo reboot
+  ```
+
+- Pacman Systems (Arch, Manjaro, EndeavourOS, etc)
+
+  > Note that systems with the `pacman` package manager will not install `docker` via the [https://get.docker.com](https://get.docker.com) script that is used for other distros. The instructions below provide information on installing all required packages manually prior to installing DockSTARTer.
+
+  ```bash
+  sudo pacman -Sy curl docker git
+  bash -c "$(curl -fsSL https://get.dockstarter.com)"
+  sudo reboot
+  ```
 
 <details>
   <summary>Alternate install (any system)</summary>
@@ -76,10 +87,14 @@ The standard install above downloads the initial script using a method with some
 sudo apt-get install curl git
 sudo dnf install curl git
 sudo yum install curl git
+sudo pacman -Sy curl docker git
+```
 
-## NOTE: Do not sudo the next line.
+Then
+
+```bash
 git clone https://github.com/GhostWriters/DockSTARTer "/home/${USER}/.docker"
-sudo bash /home/${USER}/.docker/main.sh -i
+sudo bash /home/${USER}/.docker/main.sh -vi
 sudo reboot
 ```
 
@@ -97,11 +112,13 @@ See our [documentation](https://dockstarter.com/introduction/) for more detailed
 
 ## Support
 
-[![Discord chat](https://img.shields.io/discord/477959324183035936.svg?style=flat-square&color=607D8B&logo=discord)](https://discord.gg/YFyJpmH)
+[![Discord chat](https://img.shields.io/discord/477959324183035936.svg?style=flat-square&color=607D8B&logo=discord)](https://dockstarter.com/discord)
 
 Click the chat badge to join us on Discord for support!
 
-[[Feature Request](https://github.com/GhostWriters/DockSTARTer/issues/new?template=feature_request.md)] [[Bug Report](https://github.com/GhostWriters/DockSTARTer/issues/new?template=bug_report.md)]
+[Feature Request](https://github.com/GhostWriters/DockSTARTer/issues/new?template=feature_request.md) | [Bug Report](https://github.com/GhostWriters/DockSTARTer/issues/new?template=bug_report.md)
+
+Additional information can be found on our [Support Page](https://dockstarter.com/basics/support/).
 
 ## Contributors
 
@@ -112,13 +129,13 @@ This project exists thanks to all the people who contribute.
 
 ## Supporters
 
-Support the project by donating on Open Collective.
+Support the project by donating on [Open Collective](https://opencollective.com/DockSTARTer#donation).
 
 ### Backers
 
 [![Backers on Open Collective](https://img.shields.io/opencollective/tier/DockSTARTer/7408.svg?style=flat-square&color=607D8B&label=backers)](https://opencollective.com/DockSTARTer#backer)
 
-Thank you to all our backers! [[Become a backer](https://opencollective.com/DockSTARTer#backer)]
+Thank you to all our backers! [Become a backer](https://opencollective.com/DockSTARTer#backer).
 
 [![Backers on Open Collective](https://opencollective.com/DockSTARTer/tiers/backer.svg)](https://opencollective.com/DockSTARTer#backers)
 
@@ -126,9 +143,18 @@ Thank you to all our backers! [[Become a backer](https://opencollective.com/Dock
 
 [![Sponsors on Open Collective](https://img.shields.io/opencollective/tier/DockSTARTer/7409.svg?style=flat-square&color=607D8B&label=sponsors)](https://opencollective.com/DockSTARTer#sponsor)
 
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/DockSTARTer#sponsor)]
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [Become a sponsor](https://opencollective.com/DockSTARTer#sponsor).
 
-[![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/0/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/0/website) [![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/1/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/1/website) [![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/2/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/2/website) [![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/3/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/3/website) [![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/4/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/4/website) [![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/5/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/5/website) [![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/6/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/6/website) [![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/7/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/7/website) [![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/8/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/8/website) [![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/9/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/9/website)
+[![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/0/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/0/website)
+[![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/1/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/1/website)
+[![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/2/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/2/website)
+[![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/3/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/3/website)
+[![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/4/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/4/website)
+[![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/5/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/5/website)
+[![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/6/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/6/website)
+[![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/7/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/7/website)
+[![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/8/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/8/website)
+[![Sponsors on Open Collective](https://opencollective.com/DockSTARTer/tiers/sponsor/9/avatar.svg)](https://opencollective.com/DockSTARTer/tiers/sponsor/9/website)
 
 ## Special Thanks
 

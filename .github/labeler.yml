@@ -1,12 +1,27 @@
 apps:
-  - "compose/.apps/**/*.yml"
+  - compose/*
+  - compose/**/*
 
 ci:
-  - ".github/workflows/*.yml"
-  - ".travis.yml"
+  - .github/workflows/*
 
 core:
-  - "*.sh"
+  - ./*.sh
+  - ./**/*.sh
+  - .scripts/*
+  - .scripts/**/*
 
 docs:
-  - "*.md"
+  - ./*.md
+  - ./**/*.md
+  - ./mkdocs.yml
+  - docs/*
+  - docs/**/*
+
+repo:
+  - ./*
+  - .github/*
+  - .github/**/*
+  - "!./*.md"
+  - "!./*.sh"
+  - "!.github/workflows/*"
